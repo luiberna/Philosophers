@@ -6,12 +6,12 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:08:29 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/10 14:35:08 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:24:16 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
-#define PHILO_H
+# define PHILO_H
 
 # include <limits.h>
 # include <pthread.h>
@@ -22,55 +22,55 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-struct s_info;
+struct	s_info;
 
 typedef struct s_philo
 {
-    int                 id;
-    int                 left_fork;
-    int                 right_fork;
-    int                 times_ate;
-    long long           last_meal;
-    pthread_t           thread_id;
-    struct s_info       *info;
-}               t_philo;
+	int				id;
+	int				left_fork;
+	int				right_fork;
+	int				times_ate;
+	long long		last_meal;
+	pthread_t		thread_id;
+	struct s_info	*info;
+}					t_philo;
 
 typedef struct s_info
 {
-    int                 nb_philo;
-    int                 time_to_die;
-    int                 time_to_eat;
-    int                 time_to_sleep;
-    int                 times_must_eat;
-    int                 all_ate;
-    int                 died;
-    long long           start_time;
-    pthread_mutex_t     meal;
-    pthread_mutex_t     fork[210];
-    pthread_mutex_t     write;
-    t_philo             philo[210];
-}               t_info;
+	int				nb_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				times_must_eat;
+	int				all_ate;
+	int				died;
+	long long		start_time;
+	pthread_mutex_t	meal;
+	pthread_mutex_t	fork[210];
+	pthread_mutex_t	write;
+	t_philo			philo[210];
+}					t_info;
 
-//Check
-void        check_full_belly(t_info *info, t_philo *philo);
-void        check_death(t_info *info, t_philo *philo);
+// Check
+void				check_full_belly(t_info *info, t_philo *philo);
+void				check_death(t_info *info, t_philo *philo);
 
-//Dinner
-void	    end_dinner(t_info *info, t_philo *philo);
-void        eating_dinner(t_philo *philo);
-void        *dinner_routine(void    *void_philo);
-void        start_dinner(t_info *info);
+// Dinner
+void				end_dinner(t_info *info, t_philo *philo);
+void				eating_dinner(t_philo *philo);
+void				*dinner_routine(void *void_philo);
+void				start_dinner(t_info *info);
 
-//Init
-int         check_input(char **args);
-void        init_philo(t_info *info);
-void        init_info(char **args, t_info *info);
+// Init
+int					check_input(char **args);
+void				init_philo(t_info *info);
+void				init_info(char **args, t_info *info);
 
-//Utils
-int         ft_strdigit(char *str);
-int         ft_atoi(const char *str);
-long long	get_time(void);
-void	    mutex_write(t_info *info, int philo_id, char *action);
-void	    get_to_sleep(t_info *info, long long time);
+// Utils
+int					ft_strdigit(char *str);
+int					ft_atoi(const char *str);
+long long			get_time(void);
+void				mutex_write(t_info *info, int philo_id, char *action);
+void				get_to_sleep(t_info *info, long long time);
 
 #endif

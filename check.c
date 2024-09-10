@@ -12,21 +12,22 @@
 
 #include "philo.h"
 
-void    check_full_belly(t_info *info, t_philo *philo)
+void	check_full_belly(t_info *info, t_philo *philo)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (info->times_must_eat != -1 && i < info->nb_philo && philo[i].times_ate >= (info->times_must_eat - 1))
-			i++;
-    if (i == info->nb_philo)
-        info->all_ate = 1;
+	i = 0;
+	while (info->times_must_eat != -1 && i < info->nb_philo
+		&& philo[i].times_ate >= (info->times_must_eat - 1))
+		i++;
+	if (i == info->nb_philo)
+		info->all_ate = 1;
 }
 
-void    check_death(t_info *info, t_philo *philo)
+void	check_death(t_info *info, t_philo *philo)
 {
-	int i;
-    long long time_since_last_meal;
+	int			i;
+	long long	time_since_last_meal;
 
 	while (!(info->all_ate))
 	{
@@ -34,7 +35,7 @@ void    check_death(t_info *info, t_philo *philo)
 		while (i < info->nb_philo && !(info->died))
 		{
 			pthread_mutex_lock(&(info->meal));
-            time_since_last_meal = get_time() - philo[i].last_meal;
+			time_since_last_meal = get_time() - philo[i].last_meal;
 			if (time_since_last_meal > info->time_to_die)
 			{
 				mutex_write(info, i, "died");
@@ -42,7 +43,7 @@ void    check_death(t_info *info, t_philo *philo)
 			}
 			pthread_mutex_unlock(&(info->meal));
 			usleep(100);
-            i++;
+			i++;
 		}
 		if (info->died)
 			break ;

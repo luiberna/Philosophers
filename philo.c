@@ -12,13 +12,13 @@
 
 #include "philo.h"
 
-int     main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_info info;
-    
-    if (argc < 5 || argc > 6 || check_input(argv))
-        return (printf("Error: Invalid input\n"), 1);
-    init_info(argv, &info);
-    start_dinner(&info);
-    return (0);
+	t_info	info;
+
+	if (argc < 5 || argc > 6 || check_input(argv))
+		return (printf("Error: Invalid input\n"), 1);
+	init_info(argv, &info);
+	start_dinner(&info);
+	return (0);
 }

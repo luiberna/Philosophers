@@ -12,51 +12,52 @@
 
 #include "philo.h"
 
-void		mutex_write(t_info *info, int philo_id, char *action)
+void	mutex_write(t_info *info, int philo_id, char *action)
 {
 	pthread_mutex_lock(&(info->write));
 	if (!(info->died))
-		printf("%lli %i %s\n", get_time() - info->start_time, philo_id + 1, action);
+		printf("%lli %i %s\n", get_time() - info->start_time, philo_id + 1,
+			action);
 	pthread_mutex_unlock(&(info->write));
 	return ;
 }
 
 void	get_to_sleep(t_info *info, long long time)
 {
-	long long now;
+	long long	now;
 
 	now = get_time();
-	while(!(info->died))
+	while (!(info->died))
 	{
 		if (get_time() - now >= time)
-			break;
+			break ;
 		usleep(100);
 	}
 }
 
 long long	get_time(void)
 {
-	struct	timeval time;
+	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-int     	ft_strdigit(char *str)
+int	ft_strdigit(char *str)
 {
-    int     i;
+	int	i;
 
-    i = 0;
+	i = 0;
 	while (str[i])
-    {
-        if (str[i] < '0' || str[i] > '9')
-            return (0);
-        i++;
-    }
-    return (1);
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int     ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	s;
