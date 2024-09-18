@@ -6,7 +6,7 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 23:52:45 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/10 14:20:01 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:04:33 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	init_info(char **args, t_info *info)
 		i++;
 	}
 	pthread_mutex_init(&(info->write), NULL);
-	pthread_mutex_init(&(info->meal), NULL);
+	pthread_mutex_init(&(info->meal_mutex), NULL);
+	pthread_mutex_init(&(info->died_mutex), NULL);
 	init_philo(info);
 }

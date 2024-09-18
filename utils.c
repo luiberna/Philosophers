@@ -6,7 +6,7 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:40:41 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/09 20:49:08 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:08:41 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	mutex_write(t_info *info, int philo_id, char *action)
 {
 	pthread_mutex_lock(&(info->write));
+	pthread_mutex_lock(&(info->died_mutex));
 	if (!(info->died))
 		printf("%lli %i %s\n", get_time() - info->start_time, philo_id + 1,
 			action);
+	pthread_mutex_unlock(&(info->died_mutex));
 	pthread_mutex_unlock(&(info->write));
 	return ;
 }
@@ -27,10 +29,17 @@ void	get_to_sleep(t_info *info, long long time)
 	long long	now;
 
 	now = get_time();
-	while (!(info->died))
+	while (1)
 	{
+		pthread_mutex_lock(&(info->died_mutex));
+		if (info->died)
+		{
+			pthread_mutex_unlock(&(info->died_mutex));
+			break;
+		}
+		pthread_mutex_unlock(&(info->died_mutex));
 		if (get_time() - now >= time)
-			break ;
+			break;
 		usleep(100);
 	}
 }
