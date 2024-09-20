@@ -6,7 +6,7 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:28:31 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/17 23:20:21 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:29:33 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,18 @@ void	*dinner_routine(void *void_philo)
 	i = 0;
 	philo = (t_philo *)void_philo;
 	info = philo->info;
+	if (info->nb_philo == 1)
+	{
+		pthread_mutex_lock(&(info->fork[philo->left_fork]));
+		mutex_write(info, philo->id, "has taken a fork");
+		get_to_sleep(info, info->time_to_die);
+		mutex_write(info, philo->id, "died");
+		pthread_mutex_unlock(&(info->fork[philo->left_fork]));
+		pthread_mutex_lock(&(info->died_mutex));
+		info->died = 1;
+		pthread_mutex_unlock(&(info->died_mutex));
+		return (NULL);
+	}
 	if (philo->id % 2)
 		usleep(20000);
 	while (1)
