@@ -6,13 +6,13 @@
 #    By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 12:32:15 by luiberna          #+#    #+#              #
-#    Updated: 2024/09/10 14:31:25 by luiberna         ###   ########.fr        #
+#    Updated: 2024/09/20 19:41:15 by luiberna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRCS = check.c dinner.c init.c philo.c utils.c
+SRCS = check.c dinner.c eating_dinner.c dinner_routine.c init.c philo.c utils.c
 
 CC = cc
 

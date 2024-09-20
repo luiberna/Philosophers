@@ -6,7 +6,7 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:08:29 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/17 21:59:29 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:41:04 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ typedef struct s_info
 // Check
 void				check_full_belly(t_info *info, t_philo *philo);
 void				check_death(t_info *info, t_philo *philo);
+int					check_philo_death(t_info *info, t_philo *philo, int i);
+int					check_all_full(t_info *info, t_philo *philo);
+
+// Eating Dinner
+void				eating_dinner(t_philo *philo);
+void				pickup_forks(t_philo *philo, t_info *info);
+void				putdown_forks(t_philo *philo, t_info *info);
+void				update_meal_count(t_philo *philo, t_info *info);
+
+// Dinner Routine
+int					check_died(t_info *info);
+int					check_all_ate(t_info *info);
+void				routine_sleep_and_think(t_philo *philo, t_info *info);
+int					handle_single_philo(t_philo *philo, t_info *info);
+void				*dinner_routine(void *void_philo);
 
 // Dinner
 void				end_dinner(t_info *info, t_philo *philo);
