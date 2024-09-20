@@ -35,11 +35,11 @@ void	get_to_sleep(t_info *info, long long time)
 		if (info->died)
 		{
 			pthread_mutex_unlock(&(info->died_mutex));
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&(info->died_mutex));
 		if (get_time() - now >= time)
-			break;
+			break ;
 		usleep(100);
 	}
 }

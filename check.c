@@ -19,7 +19,8 @@ void	check_full_belly(t_info *info, t_philo *philo)
 	i = 0;
 	if (info->times_must_eat == -1)
 		return ;
-	while (i < info->nb_philo && philo[i].times_ate == (info->times_must_eat - 1))
+	while (i < info->nb_philo && philo[i].times_ate == (info->times_must_eat
+			- 1))
 		i++;
 	if (i == info->nb_philo)
 		info->all_ate = 1;
@@ -27,7 +28,8 @@ void	check_full_belly(t_info *info, t_philo *philo)
 
 void	check_death(t_info *info, t_philo *philo)
 {
-	int			i;
+	int	i;
+
 	while (1)
 	{
 		i = 0;
@@ -44,7 +46,7 @@ void	check_death(t_info *info, t_philo *philo)
 
 int	check_philo_death(t_info *info, t_philo *philo, int i)
 {
-	long long time_since_last_meal;
+	long long	time_since_last_meal;
 
 	pthread_mutex_lock(&(info->meal_mutex));
 	time_since_last_meal = get_time() - philo[i].last_meal;
@@ -59,7 +61,7 @@ int	check_philo_death(t_info *info, t_philo *philo, int i)
 		return (pthread_mutex_unlock(&(info->died_mutex)), 1);
 	pthread_mutex_unlock(&(info->died_mutex));
 	usleep(100);
-	return 0;
+	return (0);
 }
 
 int	check_all_full(t_info *info, t_philo *philo)
@@ -69,5 +71,5 @@ int	check_all_full(t_info *info, t_philo *philo)
 	if (info->all_ate)
 		return (pthread_mutex_unlock(&(info->meal_mutex)), 1);
 	pthread_mutex_unlock(&(info->meal_mutex));
-	return 0;
+	return (0);
 }

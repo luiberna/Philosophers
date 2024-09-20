@@ -18,7 +18,7 @@ int	check_died(t_info *info)
 	if (info->died)
 		return (pthread_mutex_unlock(&(info->died_mutex)), 1);
 	pthread_mutex_unlock(&(info->died_mutex));
-	return 0;
+	return (0);
 }
 
 int	check_all_ate(t_info *info)
@@ -27,7 +27,7 @@ int	check_all_ate(t_info *info)
 	if (info->all_ate)
 		return (pthread_mutex_unlock(&(info->meal_mutex)), 1);
 	pthread_mutex_unlock(&(info->meal_mutex));
-	return 0;
+	return (0);
 }
 
 void	routine_sleep_and_think(t_philo *philo, t_info *info)
@@ -49,9 +49,9 @@ int	handle_single_philo(t_philo *philo, t_info *info)
 		pthread_mutex_lock(&(info->died_mutex));
 		info->died = 1;
 		pthread_mutex_unlock(&(info->died_mutex));
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 void	*dinner_routine(void *void_philo)
@@ -68,10 +68,10 @@ void	*dinner_routine(void *void_philo)
 	while (1)
 	{
 		if (check_died(info))
-			break;
+			break ;
 		eating_dinner(philo);
 		if (check_all_ate(info))
-			break;
+			break ;
 		routine_sleep_and_think(philo, info);
 	}
 	return (NULL);

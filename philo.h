@@ -6,7 +6,7 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:08:29 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/20 19:41:04 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:55:24 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_info
 	int				died;
 	long long		start_time;
 	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t died_mutex;
+	pthread_mutex_t	died_mutex;
 	pthread_mutex_t	fork[210];
 	pthread_mutex_t	write;
 	t_philo			philo[210];
