@@ -6,7 +6,7 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:26:49 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/20 19:29:14 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:25:37 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	update_meal_count(t_philo *philo, t_info *info)
 {
 	pthread_mutex_lock(&(info->meal_mutex));
 	philo->times_ate++;
+	check_full_belly(info, philo);
 	pthread_mutex_unlock(&(info->meal_mutex));
+
 }
 
 void	pickup_forks(t_philo *philo, t_info *info)

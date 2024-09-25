@@ -6,7 +6,7 @@
 /*   By: luiberna <luiberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:30:23 by luiberna          #+#    #+#             */
-/*   Updated: 2024/09/20 19:25:07 by luiberna         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:30:36 by luiberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ void	check_full_belly(t_info *info, t_philo *philo)
 	i = 0;
 	if (info->times_must_eat == -1)
 		return ;
-	while (i < info->nb_philo && philo[i].times_ate == (info->times_must_eat
-			- 1))
-		i++;
+	while (i < info->nb_philo && philo[i].times_ate >= (info->times_must_eat - 1))
+    	i++;
 	if (i == info->nb_philo)
 		info->all_ate = 1;
 }
