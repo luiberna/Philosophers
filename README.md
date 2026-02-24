@@ -12,6 +12,8 @@ This project is an implementation of the famous **Dining Philosophers Problem**,
 - Preventing deadlocks
 - Precise timing in concurrent systems
 
+![thread](https://github.com/user-attachments/assets/935f77db-f6ca-418d-925a-125763d7b00d)
+
 Each philosopher is represented by a thread. They alternate between:
 
 - Eating  
