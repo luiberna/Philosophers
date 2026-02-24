@@ -22,6 +22,8 @@ Each philosopher is represented by a thread. They alternate between:
 
 This project ensures safe and deterministic behavior using **POSIX threads (`pthread`) and mutexes**.
 
+<img width="370" height="122" alt="Mutex" src="https://github.com/user-attachments/assets/aed5b09a-3505-46e6-9cbc-6aefde624c90" />
+
 ---
 
 ## Program Arguments
